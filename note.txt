@@ -1,0 +1,28 @@
+1. 신규 페이지 생성
+curl -X POST \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Basic Y2hwMzIwQG5hdmVyLmNvbTpBVEFUVDN4RmZHRjA2VEIwdFpoblhEbWdwMlVRRjRkc0JzYkpvUFR4M0VrUEtnOWcyUHNwYllOa25aVUVsRm5sUUlKZUJBMmVUNk9tNVBLc2lubzFiNmFRUk5sMWdzOEhfUjBkWkRRMWs2SUVRUE8xVUV1ZWl3YTZPTzRpckJPaHR0LW1LM1VQRnBzOFcyWWhlRzB2b0kydlUtREpROFNOUE9xbUVGRG9yeDJmUmprSFN4V2RuWU09Mzc4NUE0QUY=' \
+-d '{"type":"page","title":"20250111-test1","space":{"key":"test"},"body":{"storage":{"value":"<p>This is a new page</p>","representation":"storage"}}}' \
+https://myhope.atlassian.net/wiki/rest/api/content/
+
+2. 다른 페이지의 하위 페이지로 생성 (id가 456인 경우)
+curl -u admin@example.com:api_token -X POST -H 'Content-Type: application/json' 
+-d'{"type":"page","title":"new page", "ancestors":[{"id":456}], "space":{"key":"TST"},"body":{"storage":{"value":"<p>This is a new page</p>","representation":"storage"}}}' https://your-domain.atlassian.net/wiki/rest/api/content/ | python -mjson.tool
+
+# 타이틀로 페이지 id 찾기
+curl --request GET \
+  --url 'https://myhope.atlassian.net/wiki/api/v2/pages?title=20250111-test1' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Basic Y2hwMzIwQG5hdmVyLmNvbTpBVEFUVDN4RmZHRjA2VEIwdFpoblhEbWdwMlVRRjRkc0JzYkpvUFR4M0VrUEtnOWcyUHNwYllOa25aVUVsRm5sUUlKZUJBMmVUNk9tNVBLc2lubzFiNmFRUk5sMWdzOEhfUjBkWkRRMWs2SUVRUE8xVUV1ZWl3YTZPTzRpckJPaHR0LW1LM1VQRnBzOFcyWWhlRzB2b0kydlUtREpROFNOUE9xbUVGRG9yeDJmUmprSFN4V2RuWU09Mzc4NUE0QUY='
+--> 163887
+
+# 기존 페이지 하위에 신규로 페이지 생성
+curl -X POST \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Basic Y2hwMzIwQG5hdmVyLmNvbTpBVEFUVDN4RmZHRjA2VEIwdFpoblhEbWdwMlVRRjRkc0JzYkpvUFR4M0VrUEtnOWcyUHNwYllOa25aVUVsRm5sUUlKZUJBMmVUNk9tNVBLc2lubzFiNmFRUk5sMWdzOEhfUjBkWkRRMWs2SUVRUE8xVUV1ZWl3YTZPTzRpckJPaHR0LW1LM1VQRnBzOFcyWWhlRzB2b0kydlUtREpROFNOUE9xbUVGRG9yeDJmUmprSFN4V2RuWU09Mzc4NUE0QUY=' \
+-d'{"type":"page","title":"new page1", "ancestors":[{"id":163887}], "space":{"key":"test"},"body":{"storage":{"value":"<p>This is a new page</p>","representation":"storage"}}}' https://myhope.atlassian.net/wiki/rest/api/content/ | python -mjson.tool
+
+curl -X POST \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Basic Y2hwMzIwQG5hdmVyLmNvbTpBVEFUVDN4RmZHRjA2VEIwdFpoblhEbWdwMlVRRjRkc0JzYkpvUFR4M0VrUEtnOWcyUHNwYllOa25aVUVsRm5sUUlKZUJBMmVUNk9tNVBLc2lubzFiNmFRUk5sMWdzOEhfUjBkWkRRMWs2SUVRUE8xVUV1ZWl3YTZPTzRpckJPaHR0LW1LM1VQRnBzOFcyWWhlRzB2b0kydlUtREpROFNOUE9xbUVGRG9yeDJmUmprSFN4V2RuWU09Mzc4NUE0QUY=' \
+-d'{"type":"page","title":"new page2", "ancestors":[{"id":163887}], "space":{"key":"test"},"body":{"storage":{"value":"<p>This is a new page</p>","representation":"storage"}}}' https://myhope.atlassian.net/wiki/rest/api/content/
