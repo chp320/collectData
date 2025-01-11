@@ -1,12 +1,23 @@
 import requests
 from confluence_config import base_confluence_url, space_key, headers
 import random
+from getCnflPgId import get_page_id_by_title
+
 
 def create_new_page(title, content):
-  """새 페이지 생성"""
+  """새 페이지 생성 - 구조 상 특정 상위 페이지 하위에 생성"""
+
+  # 등록되어야 할 메인 페이지 정보 조회
+  # getCnflPgId 의 get_page_id_by_title() 로 페이지id 조회
+  main_page_title = "scrapping test"
+  ancestors_id = get_page_id_by_title(main_page_title)
+  print(f"-> ancestors_id: {ancestors_id}")
+
+  # 조회된 메인 페이지 하위에 신규 페이지 생성
   data = {
     "title": title,
     "type": "page",
+    "ancestors":[{"id": ancestors_id}],
     "space": {"key": space_key},
     "body": {
       "storage": {
@@ -15,7 +26,7 @@ def create_new_page(title, content):
       }
     }
   }
-  print(f"-> data: {data}")
+  print(f"-> data: {data}")  
 
   response = requests.post(base_confluence_url, headers=headers, json=data)
   if response.status_code == 200:
@@ -42,7 +53,7 @@ if __name__ == "__main__":
   content = "this is a test ... "
 
   try:
-    print(f"creating for {title} on confluence ...")
+    print(f"creating for '{title}' on confluence ...")
     create_new_page(title, content)
   except Exception as e:
     print(f"error: {e}")
