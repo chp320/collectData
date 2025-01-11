@@ -13,11 +13,12 @@ base_url = f"https://www.google.com/search?q=intitle:%22{search_query}%22&as_qdr
 # GET 요청 보내기
 response = requests.get(base_url)
 
-# BeautifulSoup 으로 HTML 분석
+# BeautifulSoup 으로 HTML 분석 - 아래에서 필요한 element 를 추출
 soup = BeautifulSoup(response.text, 'html.parser')
 
 # 연결된 링크 추출
 links = []
+# 모든 <a> 태그 중에서 href 속성을 가진 태그를 찾아 리스트로 저장
 for a_tag in soup.find_all('a', href=True):
   href = a_tag['href']
   if href.startswith('/url?q='):
