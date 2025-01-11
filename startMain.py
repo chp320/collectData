@@ -27,7 +27,11 @@ if __name__ == "__main__":
       print("no links found.")
     else:
       # confluence 페이지 생성 또는 업데이트
-      page_content = "<br>".join(links)     # html 형식으로 변경
+
+      # url 이 포함된 링크
+      converted_links = [f'<a href="{url}" target="_blank">{url}</a>' for url in links]
+      # 콘텐츠로 만들어 저장
+      page_content = "<br>".join(converted_links)
       print("updaing confluence page ...")
       manage_confluence_page(page_title, page_content)
       print("task completed successfully")

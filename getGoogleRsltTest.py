@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import re
 
 def extract_google_links(search_query, time_range="m"):
   """구글 검색 결과에서 링크를 추출하는 함수."""
