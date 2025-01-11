@@ -28,8 +28,8 @@ if __name__ == "__main__":
     else:
       # confluence 페이지 생성 또는 업데이트
 
-      # url 이 포함된 링크
-      converted_links = [f'<a href="{url}" target="_blank">{url}</a>' for url in links]
+      # url 이 포함된 링크 (번호가 앞에 붙음)
+      converted_links = [f'{i + 1}. <a href="{url}" target="_blank">{url}</a>' for i, url in enumerate(links)]
       # 콘텐츠로 만들어 저장
       page_content = "<br>".join(converted_links)
       print("updaing confluence page ...")
