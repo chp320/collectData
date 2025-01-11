@@ -26,3 +26,17 @@ curl -X POST \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Basic Y2hwMzIwQG5hdmVyLmNvbTpBVEFUVDN4RmZHRjA2VEIwdFpoblhEbWdwMlVRRjRkc0JzYkpvUFR4M0VrUEtnOWcyUHNwYllOa25aVUVsRm5sUUlKZUJBMmVUNk9tNVBLc2lubzFiNmFRUk5sMWdzOEhfUjBkWkRRMWs2SUVRUE8xVUV1ZWl3YTZPTzRpckJPaHR0LW1LM1VQRnBzOFcyWWhlRzB2b0kydlUtREpROFNOUE9xbUVGRG9yeDJmUmprSFN4V2RuWU09Mzc4NUE0QUY=' \
 -d'{"type":"page","title":"new page2", "ancestors":[{"id":163887}], "space":{"key":"test"},"body":{"storage":{"value":"<p>This is a new page</p>","representation":"storage"}}}' https://myhope.atlassian.net/wiki/rest/api/content/
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+< 토이 프로젝트 파일 구성 >
+1. 메인 파일 - startMain.py
+2. 파일 구성
+1) 구글 검색 결과 추출 - getGoogleRsltTest.py
+2) 컨플 관련 기능 메인 - setCnflMgmt.py
+   ㄴ 제목으로 페이지 id 조회 - getCnflPgId.py
+   ㄴ 기존 페이지 존재하는 경우 기존 페이지에 업데이트 - putCnflPgCntnt.py
+   ㄴ 기존 페이지 미존재하는 경우 신규 페이지 생성 - putNewCnflPgCntnt.py
+
+
