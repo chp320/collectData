@@ -11,10 +11,11 @@ import random
 
 # 검색 키워드, 제한 날짜 설정
 search_query = "서평단+모집"
-today = datetime.now().strftime('%Y%m%d')
-# 랜덤한 5자리 정수 생성
-random_number = random.randint(10000, 99999)
-page_title = f"{today} - {search_query}" + str(random_number)
+today = datetime.now().strftime('%Y%m%d%H%M%S')
+# # 랜덤한 5자리 정수 생성
+# random_number = random.randint(10000, 99999)
+# page_title = f"{today} - {search_query}" + str(random_number)
+page_title = f"{today}"
 
 
 if __name__ == "__main__":
